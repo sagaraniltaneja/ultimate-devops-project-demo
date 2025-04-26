@@ -296,7 +296,8 @@ func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProdu
 	)
 	return &pb.SearchProductsResponse{Results: result}, nil
 }
-
+//Function to check if a specific product ID should fail based on the feature flag
+// This is a mock implementation, replace with actual feature flag check logic
 func (p *productCatalog) checkProductFailure(ctx context.Context, id string) bool {
 	if id != "OLJCESPC7Z" {
 		return false
