@@ -280,7 +280,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 	)
 	return found, nil
 }
-
+//Function to search for products based on a query string
 func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProductsRequest) (*pb.SearchProductsResponse, error) {
 	span := trace.SpanFromContext(ctx)
 
@@ -296,7 +296,8 @@ func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProdu
 	)
 	return &pb.SearchProductsResponse{Results: result}, nil
 }
-
+//Function to check if a specific product ID should fail based on the feature flag
+// This is a mock implementation, replace with actual feature flag check logic
 func (p *productCatalog) checkProductFailure(ctx context.Context, id string) bool {
 	if id != "OLJCESPC7Z" {
 		return false
@@ -308,7 +309,7 @@ func (p *productCatalog) checkProductFailure(ctx context.Context, id string) boo
 	)
 	return failureEnabled
 }
-
+//Function to create a gRPC client connection to the product catalog service
 func createClient(ctx context.Context, svcAddr string) (*grpc.ClientConn, error) {
 	return grpc.DialContext(ctx, svcAddr,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
