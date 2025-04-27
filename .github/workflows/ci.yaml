@@ -43,7 +43,9 @@ jobs:
           uses: golangci/golangci-lint-action@v6
           with:
             version: v1.55.2
-            working-directory: src/product-catalog          
+            run: golangci-lint run
+            working-directory: src/product-catalog
+          
 
     docker:
         runs-on: ubuntu-latest
@@ -69,6 +71,7 @@ jobs:
             file: Dockerfile
             push: true
             tags: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}
+            tags: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}
 
     update-K8s-manifest:
         runs-on: ubuntu-latest
@@ -92,4 +95,4 @@ jobs:
             git config --local user.email "sagaraniltaneja@gmail.com"
             git add kubernetes/productcatalog/deploy.yaml
             git commit -m "[CI] Updated image tag in kubernetes/productcatalog/deploy.yaml"
-            git push origin HEAD:main
+            git push origin HEAD:main -f
