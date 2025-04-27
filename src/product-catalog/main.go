@@ -243,7 +243,8 @@ func (p *productCatalog) ListProducts(ctx context.Context, req *pb.Empty) (*pb.L
 	)
 	return &pb.ListProductsResponse{Products: catalog}, nil
 }
-
+//Function to get a specific product by ID
+// It uses OpenTelemetry to trace the request and log the result
 func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductRequest) (*pb.Product, error) {
 	span := trace.SpanFromContext(ctx)
 	span.SetAttributes(
