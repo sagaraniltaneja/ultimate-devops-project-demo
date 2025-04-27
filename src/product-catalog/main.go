@@ -282,9 +282,6 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 	return found, nil
 }
 //Function to search for products based on a query string
-// It uses OpenTelemetry to trace the request and log the result
-// The search is case-insensitive and matches against the product name and description
-// The result is a list of products that match the query
 func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProductsRequest) (*pb.SearchProductsResponse, error) {
 	span := trace.SpanFromContext(ctx)
 
